@@ -1,0 +1,62 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% csrf_token %}
+    {% if type == 1 %}
+        <div class="docdash">   <!--if current logged in user type is doc execute this div-->
+            <ul>
+                <li><a href="/logout/">Logout</a></li>
+                <li>
+                    <a href="#">View Blog</a>
+                    <div class="submenu">
+                        <ul>
+                            {% for i in submenu %}
+                                <li><a href="/viewblogcat/{{i.id}}/">{{i.name}}</a></li> <!--getting blog category name,id from DB--->
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/addblog/">Add Blog</a></li>
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="http://127.0.0.1:8000/">Home</a></li>
+            </ul>
+
+            {% for i in blogdet %}
+            <div class="container-fluid">   <!--display blog contents to doctors-->
+                    <h1>{{i.Title}}</h1>
+                    <img  src="{{i.Image.url}}" alt="" height="20%" width="20%">
+                    <h4>{{i.Summary}}</h4>
+                    <input type="submit" value="Read More..." class="btn btn-success btn-lg">
+            </div><br>
+            {% endfor %}
+        </div>
+
+    {% else %}
+    <div class="patdash">  <!--if current logged in user type is patient execute this div-->
+        <ul>
+            <li><a href="/logout/">Logout</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">View Blog</a>
+                <div class="submenu">
+                    <ul>
+                        {% for i in submenu %}
+                            <li><a href="/viewblogcat/{{i.id}}/">{{i.name}}</a></li><br>
+                        {% endfor %} 
+                    </ul>
+                </div>
+            </li>
+            <li><a href="http://127.0.0.1:8000/">Home</a></li>
+        </ul>
+    {% for i in blogdet %}
+    <div class="container-fluid">
+        <h1>{{i.Title}}</h1>
+        <img  src="{{i.Image.url}}" alt="" height="20%" width="20%">
+        <h4> {{i.Summary|truncatewords:15}}</h4>                        <!--display blog summary truncated to patients-->
+        <input type="submit" value="Read More..." class="btn btn-success btn-lg">
+    </div><br>
+    {% endfor %}
+    </div>
+
+    {% endif %}
+
+{% endblock %}

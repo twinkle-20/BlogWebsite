@@ -1,0 +1,70 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="docdash">
+    <ul>
+        <li><a href="/logout/">Logout</a></li>
+        <li>
+            <a href="#">View Blog</a>
+            <div class="submenu">
+                <ul>
+                    {% for i in submenu %}
+                        <li><a href="/viewblogcat/{{i.id}}/">{{i.name}}</a></li>   <!--getting blog category name,id from DB for category menus--->
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+        <li><a href="/addblog/">Add Blog</a></li>
+        <li><a href="/dashboard/">Dashboard</a></li>
+        <li><a href="http://127.0.0.1:8000/">Home</a></li>
+    </ul>
+</div>
+    <div class="addblogbox">
+        <h1>ADD NEW BLOG HERE!!!</h1>
+        <hr>
+        <form method="POST" action="/addblog/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="column">
+                    <div class="form-group">
+                        <label for="title">TITLE</label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter blog title"  required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" name="bimgs"  class="form-control" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="bcategory" id="bcategory">
+                            {% for i in submenu %}
+                                <option value="{{i.name}}">{{i.name}}</option>   <!--getting blog category name from DB--->
+                            {% endfor %}
+                        </select>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="summary">Summary</label>
+                        <textarea name="summary" id="summary" cols="40" rows="5" required></textarea>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea name="content" id="content" cols="120" rows="10" required></textarea>
+                    </div><br>
+                    <div class="form-group">
+                        <input type="checkbox" id="is_blog" name="is_blog" value="1">  <!--if chkbox is marked set value to 1 (blog is draft)-->
+                        <label for="chkbox">Mark As Draft</label> 
+                    </div>
+                </div>
+                <input type="submit" value="submit" class="btn btn-success btn-lg">
+            </div>
+        </form>
+    </div>
+    
+    <!--if blog created display success message-->
+    {% if status %}
+    <script>                   
+        alert("{{status}}");
+    </script>
+    {% endif %}
+
+{% endblock %}

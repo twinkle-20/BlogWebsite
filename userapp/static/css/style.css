@@ -1,0 +1,177 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-image:linear-gradient(#83EAF1,#63A4FF);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+/*----------------------------------------menu bar---------------------*/
+ ul
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+}
+li 
+{
+    float: right;
+}
+li a
+{
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 14px 16px;
+    font-size: larger;
+}
+li a:hover
+{
+    display: block;
+    background-color: lightslategrey;
+}
+/*----------------------blogs submenu--------------------------------*/
+.submenu 
+{
+    display: none;
+}
+.docdash ul li:hover .submenu
+{
+    display:block;
+    position: absolute;
+    background: rgb(68, 65, 65);
+    opacity: 1;
+    margin-top: -5px;
+    margin-left: -15px;
+}
+.docdash ul li:hover .submenu ul li a 
+{
+    color: white;
+}
+.docdash ul li:hover .submenu ul
+{
+    display: block;
+    margin: 10px;
+}
+.docdash ul li:hover .submenu ul li
+{
+    text-align: left;
+    background: transparent;
+}
+
+.patdash ul li:hover .submenu
+{
+    display:block;
+    position: absolute;
+    background: rgb(68, 65, 65);
+    opacity: 1;
+    margin-top: -5px;
+    margin-left: -15px;
+}
+.patdash ul li:hover .submenu ul li a 
+{
+    color: white;
+}
+.patdash ul li:hover .submenu ul
+{
+    display: block;
+    margin: 10px;
+}
+.patdash ul li:hover .submenu ul li
+{
+    text-align: left;
+    background: transparent;
+}
+
+/*------------------------------home mid content-----------------*/
+.row .column
+{
+    width: 50%;
+    padding: 10px;
+}
+.column h1
+{
+    color: white;
+    text-align: center;
+}
+.column p
+{
+    color: white;
+    font-size: medium;
+}
+/*------------------------REGISTRATION BOX or ANY FORM BOX----------------*/
+.regbox
+{
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px;
+    margin:auto;
+    background-color: white;
+    border: 5px groove white;
+    width: 1000px;
+    height: 700px;
+}
+.regbox h1
+{
+  color: midnightblue;
+  text-align: center;
+}
+.regbox  hr{
+  height: 10px;
+  color: black;
+}
+.addblogbox
+{
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px;
+    margin:auto;
+    background-color: white;
+    border: 5px groove white;
+    width: 1200px;
+    height: 900px;
+}
+.addblogbox h1
+{
+    color: midnightblue;
+    text-align: center;
+}
+.addblogbox hr{
+    height: 10px;
+    color: black;
+  }
+/*--------------------------------DASHBOARD-------------------*/
+.details td
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 0px;
+    width: 5%;
+}
+.details th
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+    background-color: grey;
+    color: white;
+}
+.details td img
+{
+    display: block;
+    width: 100%;
+}
+.details h1
+{
+    color: midnightblue;
+}
+/*----------------------VIEW BLOG------------------------------------*/
+.container-fluid
+{
+    background-color: rgba(0, 0, 0, 0.486);
+}
+.container-fluid h1,h4
+{
+    color: white;
+}

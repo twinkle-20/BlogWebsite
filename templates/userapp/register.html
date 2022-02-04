@@ -1,0 +1,90 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block content %}
+    <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="/login/">Login</a></li>
+        <li><a href="http://127.0.0.1:8000/">Home</a></li>
+    </ul>
+
+    {% for message in messages %}
+        {% if message %}
+            <p style="text-align: center;color: red;">{{message}}</p>
+        {% endif %}
+    {% endfor %}
+
+    <div class="regbox">
+        <h1>REGISTER HERE!!!</h1>
+        <hr>
+    <form method="post" action="/registers/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="column">
+                <div class="form-group">
+                    <label for="fname">FIRST NAME</label>
+                    <input type="text" name="fname" class="form-control" placeholder="Enter your fname"  required>
+                </div><br>
+                <div class="form-group">
+                    <label for="lname">LAST NAME</label>
+                    <input type="text" name="lname" class="form-control" placeholder="Enter your lname"  required>
+                </div><br>
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="email">Profile Pic</label>
+                    <input type="file" name="imgs"  class="form-control" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control"  placeholder="Enter Your address" name="address" required>
+                </div><br>  
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class ="form-control" placeholder="Enter Your city" name="city" required>
+                </div><br>
+            </div>
+            
+            
+            <div class="column">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control"  placeholder="Enter username" name="uname" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control"  placeholder="Enter password" name="pass" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" class="form-control"  placeholder="Enter password again" name="password" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text"  class ="form-control" placeholder="Enter Your State" name="state" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text"  class="form-control"  placeholder="Enter Your Pincode" name="pincode" required>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="usertypes">User Type</label>
+                    <select name="usertypes" id="usertypes">
+                        <option value="Doctor" class="dropdown-item">Doctor</option>
+                        <option value="Patients" class="dropdown-item">Patients</option>
+                    </select>
+                </div><br>
+            </div>
+            <input type="submit" value="submit" class="btn btn-success btn-lg">
+        </div>
+    </form>
+    </div>
+
+    {% if status %}
+    <script>
+        alert("{{status}}");
+    </script>
+    {% endif %}
+
+{% endblock %}

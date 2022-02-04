@@ -1,0 +1,103 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% csrf_token %}
+    {% if type == 1 %}
+            <div class="docdash">    <!--if current logged in user type is doc execute this div-->
+                <ul>
+                    <li><a href="/logout/">Logout</a></li>
+                    <li>
+                        <a href="#">View Blog</a>
+                        <div class="submenu">
+                        <ul>
+                            {% for i in submenu %}
+                                <li><a href="/viewblogcat/{{i.id}}/">{{i.name}}</a></li>   <!--getting blog category name,id from DB--->
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    </li>
+                    <li><a href="/addblog/">Add Blog</a></li>
+                    <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                </ul>
+                <div class="details">
+                    <h1>WELCOME TO DOCTORS DASHBOARD</h1>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><h3>First Name</h3></th>
+                            <th><h3>Last Name</h3></th>
+                            <th><h3>Profile Pic</h3></th>
+                            <th><h3>Username</h3></th>
+                            <th><h3>Email</h3></th>
+                            <th><h3>Address</h3></th>
+                            <th><h3>City</h3></th>
+                            <th><h3>Profession</h3></th>
+                        </tr>
+                        {% for i in docdetails %} 
+                        <tr>
+                            <td><h5>{{i.fname}}</h5></td>
+                            <td><h5>{{i.lname}}</h5></td>
+                            <td><img  src="{{i.profile_pic.url}}" alt="" height="20%" width="20%"></td>
+                            <td><h5>{{i.username}}</h5></td>
+                            <td><h5>{{i.email}}</h5></td>
+                            <td><h5>{{i.address}}</h5></td>
+                            <td><h5>{{i.city}}</h5></td>
+                            <td><h5>{{i.usertype}}</h5></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+
+    {% else %}
+            <div class="patdash">      <!--if current logged in user type is patient execute this div-->
+                <ul>
+                    <li><a href="/logout/">Logout</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">View Blog</a>
+                        <div class="submenu">
+                            <ul>
+                                {% for i in submenu %}
+                                    <li><a href="/viewblogcat/{{i.id}}/">{{i.name}}</a></li><br>
+                                {% endfor %} 
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                </ul>
+            <div class="details">
+                <h1>WELCOME TO PATIENTS DASHBOARD</h1>
+                <table style="width: 100%;">
+                    <tr>
+                        <th><h3>First Name</h3></th>
+                        <th><h3>Last Name</h3></th>
+                        <th><h3>Profile Pic</h3></th>
+                        <th><h3>Username</h3></th>
+                        <th><h3>Email</h3></th>
+                        <th><h3>Address</h3></th>
+                        <th><h3>City</h3></th>
+                    </tr>
+                    {% for i in patdetails %}
+                    <tr>
+                        <td><h5>{{i.fname}}</h5></td>
+                        <td><h5>{{i.lname}}</h5></td>
+                        <td><img  src="{{i.profile_pic.url}}" alt="" height="20%" width="20%"></td>
+                        <td><h5>{{i.username}}</h5></td>
+                        <td><h5>{{i.email}}</h5></td>
+                        <td><h5>{{i.address}}</h5></td>
+                        <td><h5>{{i.city}}</h5></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            </div> 
+    {% endif %}
+
+    <!--if no blog available to read display error message-->
+    {% if msg %}
+    <script>
+        alert("{{msg}}");
+    </script>
+    {% endif %}
+
+{% endblock %}

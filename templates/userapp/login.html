@@ -1,0 +1,30 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block content %}
+    <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="/login/">Login</a></li>
+        <li><a href="/registers/">Register</a></li>
+        <li><a href="http://127.0.0.1:8000/">Home</a></li>
+    </ul><br><br><br>
+    <div class="regbox" style="width: 500px;height:350px;">
+        <h1>LOGIN HERE!!!</h1>
+        <hr>
+        <form action="/loginact/" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="column" style="width:100%;">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control"  placeholder="Enter username" name="username" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control"  placeholder="Enter password again" name="password" required>
+                    </div>
+                </div>
+                <input type="submit" value="submit"  class="btn btn-success btn-lg">
+            </div>
+        </form>
+    </div>
+{% endblock %}
